@@ -54,9 +54,11 @@ Unlike some other element-lookup methods such as Document.querySelector() and Do
 ## 예시2
 ```js
 document.getElementById("idH2").innerHTML = "어서와, 한국은 처음이지?";
+htmlElement.innerHTML
 ```
 - HTML 문서에서 ID로 요소를 검색한 다음 내부 HTML 콘텐츠를 오른쪽에 있는 텍스트로 바꿉니다.  
-
+### 예시3
+![](2022-04-28-08-13-25.png)  
 ## 참고 Element란?
 - element의 뜻: 요소, 구성 요소, 원소, 성분
 - html과 요소(element)의 관계
@@ -76,3 +78,14 @@ document.getElementById("idH2").innerHTML = "어서와, 한국은 처음이지?"
   - 여기에는` <img>,<input>,<link>,<meta>,<hr>` 등이 있다.
 - 요소와 태그의 혼용
   - html 요소와 html 태그는 서로 바꿔 사용 되기도 한다. 일부는 요소를 태그라 부르기도 한다.
+## 참고 innerHTML 란?
+- Element 속성 innerHTML은 `요소 내에 포함된 HTML` 또는 XML 마크업을 가져오거나 설정합니다.
+- 요소의 내용을 바꾸지 않고 문서에 HTML을 삽입하려면 insertAdjacentHTML() 메소드를 사용하십시오.
+### 정의
+- `요소의 하위 항목`에 대한 HTML `직렬화를 포함`하는 `DOMString`입니다. innerHTML 값을 설정하면 요소의 모든 하위 항목이 제거되고 htmlString 문자열에 제공된 HTML을 구문 분석하여 생성된 노드로 대체됩니다.
+- `DOMString` 이란?
+  - DOMString은 일반적으로 UTF-16 코드 단위로 해석되는 16비트 부호 없는 정수 시퀀스입니다.
+  - 이것은 JavaScript 기본 문자열 유형과 정확히 일치합니다. DOMString이 JavaScript에 제공되면 해당 String에 직접 매핑됩니다.
+  - Web API가 DOMString을 수락하면 제공된 값은 ToString 추상 작업을 사용하여 문자열화됩니다. (Symbol 이외의 유형의 경우 이는 String() 함수와 동일한 동작을 합니다.)
+  - DOMString을 허용하는 특정 웹 API에는 추가 레거시 동작이 있습니다. 여기서 null을 전달하면 일반적인 "null" 대신 빈 문자열이 됩니다.  
+  
