@@ -1,234 +1,48 @@
-<!DOCTYPE html>
-<html lang="en">
+<http>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RealGrid</title>
-  <link href="realgrid.2.5.1/realgrid-style.css" rel="stylesheet" />
-  <link href="main.css" rel="stylesheet" />
-  <link href="main.js" rel=" stylesheet" />
-  <script src="realgrid.2.5.1/realgrid.2.5.1.min.js"></script>
-
-  <script>
-    // 아래 라이선스는 유효기간 2022년 5월 14일 까지 localhost, 127.0.0.1 또는 real-report.com 도메인에서 사용할 수 있는 라이선스 입니다.
-    const realGrid2Lic =
-      'upVcPE+wPOmtLjqyBIh9RkM/nBOseBrflwxYpzGZyYm9cY8amGDkiMnVeQKUHJDjW2y71jtk+wte7L7C4dZzvE93jl+mFZJjnyBdyOMD3uI=';
-    //그리드가 올라갈 컨테이너 변수  //
-    let container;
-    // 그리드의 데이터를 담을 provider 변수  //
-    let dataProvider;
-    // 그리드의 객체 변수 //
-    let gridView;
-    // 그리드의 데이터 필드 //
-    let fields = [{
-        "fieldName": "korName",
-        "dataType": "text"
-      },
-      {
-        "fieldName": "Se",
-        "dataType": "text"
-      },
-      {
-        "fieldName": "PhoneNumber",
-        "datType:": "text"
-      },
-      {
-        "fieldName": "Data",
-        "dataType": "datatime",
-        "datttimeFormat": "yyyy-MM-dd"
-      }, {
-        "fieldName": "Money",
-        "dataType": "number"
-      }
-    ];
-    // 그리드 데이터 컬럼 //
-    var columns = [{
-        "name": "KorNameColumn",
-        "fieldName": "KorName",
-        "type": "data",
-        "width": "150",
-        "header": {
-          "text": "이름"
-        },
-        "editior": {
-          "type": "line",
-          "inputCharacters": "ㄱ-힣"
-        }
-      },
-      {
-        "name": "seColumm",
-        "fieldName": "Se",
-        "type": "data",
-        "width": "150",
-        "header": {
-          "text": "성별"
-        }
-      },
-      {
-        "name": "PhoneNumberColumm",
-        "fildName": "PhoneNumber",
-        "type": "data",
-        "width": "150",
-        "header": {
-          "text": "전화번호"
-        },
-        "editor": {
-          "mask": {
-            "editMask": "000-0000-0000"
-          }
-        },
-        "textFormat": "([0-9]{3})([0-9]{4})([0-9]{4});$1-$2-$3"
-      }, {
-        "name": "DateColumn",
-        "fieldName": "Date",
-        "dataType": "datetime",
-        "datetimeFormat": "yyyy/MM/dd",
-        "width": "150",
-        "header": {
-          "text": "입사일"
-        }
-      }, {
-        "name": "MoneyColumn",
-        "fieldName": "Money",
-        "type": "data",
-        "numberFormat": "#,##0",
-        "width": "150",
-        "header": {
-          "text": "급여"
-        }
-      }
-    ];
-    // 그리드에 들어갈 데이터 샘플 //
-    var data = [{
-        "KorName": "김철수",
-        "Se": "남",
-        "PhoneNumber": "01088882222",
-        "Date": "2000-02-01",
-        "Money": 24000000
-      },
-      {
-        "KorName": "이수영",
-        "Se": "여",
-        "PhoneNumber": "01029342638",
-        "Date": "2002-03-01",
-        "Money": 26000000
-      },
-      {
-        "KorName": "최민식",
-        "Se": "남",
-        "PhoneNumber": "01023453647",
-        "Date": "2010-04-01",
-        "Money": 27000000
-      },
-      {
-        "KorName": "김수현",
-        "Se": "남",
-        "PhoneNumber": "01022863436",
-        "Date": "2015-05-01",
-        "Money": 28000000
-      },
-      {
-        "KorName": "김혜수",
-        "Se": "여",
-        "PhoneNumber": "01092663477",
-        "Date": "2020-06-01",
-        "Money": 28000000
-      },
-      {
-        "KorName": "유혜진",
-        "Se": "남",
-        "PhoneNumber": "01066783232",
-        "Date": "2008-07-01",
-        "Money": 32000000
-      },
-      {
-        "KorName": "남주혁",
-        "Se": "남",
-        "PhoneNumber": "01099343488",
-        "Date": "2007-09-01",
-        "Money": 30000000
-      },
-      {
-        "KorName": "홍길동",
-        "Se": "남",
-        "PhoneNumber": "01029883366",
-        "Date": "2002-10-01",
-        "Money": 29000000
-      },
-      {
-        "KorName": "최수지",
-        "Se": "남",
-        "PhoneNumber": "01037495588",
-        "Date": "2003-11-01",
-        "Money": 23000000
-      }
-    ];
-
-    document.addEventListener("DOMContentLoaded", function () {
-      container = document.getElementById('realgrid');
-      /*RealGrid Version 2.2.5*/
-      dataProvider = new RealGrid.LocalDataProvider(false);
-      dataProvider.setFields(fields);
-      dataProvider.fillJsonData(data, {
-        fillMode: "set"
-      });
-
-      gridView = new RealGrid.GridView(container);
-      gridView.setDataSource(dataProvider);
-      gridView.setColumns(columns);
-    });
-  </script>
-</head>
-
-<body>
-
-  <body>
-    <div class="main">
-      <div class="header">
-        <h1>우리캠프 프로젝트 v1.0</h1>
-      </div>
-      <div class="form-group">
-        <div class="half-width">
-          <div class="input-group">
-            <label class="input-label" for="inputKorName">이름</label>
-            <input type="text" name="inputKorName" id="inputKorName">
-          </div>
-          <div class="input-group">
-            <label class="input-label" for="inputKorName">전화번호</label>
-            <input type="text" name="inputKorName" id="inputKorName">
-          </div>
-        </div>
-        <div class="half-width">
-          <div class="input-group">
-            <label class="input-label" for="inputKorName">성별</label>
-            <input type="text" name="inputKorName" id="inputKorName">
-          </div>
-          <div class="input-group">
-            <label class="input-label" for="inputKorName">입사일</label>
-            <input type="text" name="inputKorName" id="inputKorName">
-          </div>
-          <div class="input-group">
-            <label class="input-label" for="inputKorName">급여</label>
-            <input type="text" name="inputKorName" id="inputKorName">
-          </div>
-        </div>
-      </div>
-      <div class="actions">
-        <button name="saveButtton" class="save-button">저장</button>
-      </div>
-      <div class="container">
-        <div id="realgrid"></div>
-      </div>
-    </div>
-
-    <script src="js/realgrid/realgrid.min.js"></script>
-    <script src="js/realgrid/libs/jszip.min.js"></script>
+  <head>
+    <link rel="stylesheet" href="./realgrid.2.5.1/realgrid-style.css">
+    <script src="/realgrid.2.5.1/realgrid.2.5.1.min.js"></script>
     <script>
+      var realgridLic ="upVcPE+wPOmtLjqyBIh9RkM/nBOseBrflwxYpzGZyYlnRyUuAXyLeK+VftULexn77B0PqgFuedJSNZd9lOsQq/8h2wIgOqXo56h8Tjucen4lSREvRHn80TbbAvLsknwP"
+      var container;
+      var dataprovider;
+      var gridView;
+      var fields = [{
+        fieldName: 'field1'
+      }]
+      var columns = [{
+        column: 'columnName1',
+        fieldName: 'field1'
+      }]
+      var data = [
+        {field: '값1'},
+        {feild: '값2'},
+        {field: '값3'},
+        {field: '값4'},
+      ]
+       document.addEventListener('DOMContentLoaded', function () {
+         /*container = document.getElementById('realgrid'); 에 대한 정리 및 설명 
+         
+         */
+        
+      container = document.getElementById('realgrid');
+      gridViewe = new RealGrid.GridView(container);
+      dataProvider = new RealGrid.LocalDataProvider();
+      dataProvider.setFields(fields);
+      dataProvider.fillJsonData(data);
+      gridViewe.setColumns(columns);
+      gridViewe.setDataSource(dataProvider);
+      ))};
 
 
     </script>
+
+  </head>
+
+  <body>
+<div id="realgrid"></div>
   </body>
 
-</html>
+</http>
