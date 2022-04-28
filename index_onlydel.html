@@ -15,7 +15,7 @@
     // 그리드 뷰를 담기 위한 변수
     // 필드 =[항목{속성:값}] ,
     // 속성을 구분 짓는 콤마 ,
-    var gridViewe;
+    var gridView;
 
     var fields = [{
       fieldName: 'field1'
@@ -36,12 +36,12 @@
 
     document.addEventListener('DOMContentLoaded', function () {
       container = document.getElementById('realgrid');
-      gridViewe = new RealGrid.GridView(container);
+      gridview = new RealGrid.GridView(container);
       dataProvider = new RealGrid.LocalDataProvider();
       dataProvider.setFields(fields);
       dataProvider.fillJsonData(data);
-      gridViewe.setColumns(columns);
-      gridViewe.setDataSource(dataProvider);
+      gridview.setColumns(columns);
+      gridview.setDataSource(dataProvider);
     });
   </script>
   <body>
