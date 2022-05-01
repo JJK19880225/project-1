@@ -33,15 +33,15 @@
       { field1: '값5' },
       { field1: '값6' },
     ];
-
+// dom 
     document.addEventListener('DOMContentLoaded', function () {
       container = document.getElementById('realgrid');
-      gridViewe = new RealGrid.GridView(container);
+      gridView = new RealGrid.GridView(container);
       dataProvider = new RealGrid.LocalDataProvider();
       dataProvider.setFields(fields);
       dataProvider.fillJsonData(data);
-      gridViewe.setColumns(columns);
-      gridViewe.setDataSource(dataProvider);
+      gridView.setColumns(columns);
+      gridView.setDataSource(dataProvider);
     });
   </script>
   <body>
